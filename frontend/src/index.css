@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Trebuchet MS", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #0f172a;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.08), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2ff 52%, #f8fafc 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page-section {
+  @apply animate-[fadeIn_500ms_ease-out];
+}
+
+.container-page {
+  width: min(100%, 1680px);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 2vw, 2.5rem);
+}
+
+.card {
+  @apply rounded-3xl border border-white/70 bg-white/90 shadow-panel backdrop-blur transition duration-300;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-100;
+}
+
+.btn-primary {
+  @apply btn bg-brand-600 text-white shadow-lg shadow-brand-100/60 hover:-translate-y-0.5 hover:bg-brand-700;
+}
+
+.btn-secondary {
+  @apply btn border border-slate-200 bg-white text-slate-700 hover:-translate-y-0.5 hover:bg-slate-50;
+}
+
+.input {
+  @apply w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 focus:-translate-y-0.5 focus:border-brand-500 focus:ring-2 focus:ring-brand-100;
+}
+
+.glass-panel {
+  @apply border border-white/60 bg-white/70 backdrop-blur-xl;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
