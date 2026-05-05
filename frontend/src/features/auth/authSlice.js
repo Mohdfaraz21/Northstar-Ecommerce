@@ -19,7 +19,7 @@ const persistUser = (user) => {
 
 export const login = createAsyncThunk('auth/login', async (payload, thunkAPI) => {
   try {
-    const { data } = await api.post('/auth/login', payload);
+    const { data } = await api.post('/api/auth/login', payload);
     persistUser(data);
     return data;
   } catch (error) {
@@ -29,7 +29,7 @@ export const login = createAsyncThunk('auth/login', async (payload, thunkAPI) =>
 
 export const register = createAsyncThunk('auth/register', async (payload, thunkAPI) => {
   try {
-    const { data } = await api.post('/auth/register', payload);
+    const { data } = await api.post('/api/auth/register', payload);
     persistUser(data);
     return data;
   } catch (error) {
@@ -39,7 +39,7 @@ export const register = createAsyncThunk('auth/register', async (payload, thunkA
 
 export const fetchProfile = createAsyncThunk('auth/fetchProfile', async (_, thunkAPI) => {
   try {
-    const { data } = await api.get('/auth/profile');
+    const { data } = await api.get('/api/auth/profile');
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Unable to fetch profile');
@@ -48,7 +48,7 @@ export const fetchProfile = createAsyncThunk('auth/fetchProfile', async (_, thun
 
 export const updateProfile = createAsyncThunk('auth/updateProfile', async (payload, thunkAPI) => {
   try {
-    const { data } = await api.put('/auth/profile', payload);
+    const { data } = await api.put('/api/auth/profile', payload);
     persistUser(data);
     return data;
   } catch (error) {
@@ -58,7 +58,7 @@ export const updateProfile = createAsyncThunk('auth/updateProfile', async (paylo
 
 export const fetchUsers = createAsyncThunk('auth/fetchUsers', async (_, thunkAPI) => {
   try {
-    const { data } = await api.get('/users');
+    const { data } = await api.get('/api/users');
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Unable to load users');

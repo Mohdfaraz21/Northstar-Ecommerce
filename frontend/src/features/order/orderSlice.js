@@ -15,7 +15,7 @@ export const createPaymentIntent = createAsyncThunk(
   'orders/createPaymentIntent',
   async (amount, thunkAPI) => {
     try {
-      const { data } = await api.post('/payments/create-intent', { amount });
+      const { data } = await api.post('/api/payments/create-intent', { amount });
       return data.clientSecret;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || 'Unable to initialize payment');
@@ -25,7 +25,7 @@ export const createPaymentIntent = createAsyncThunk(
 
 export const createOrder = createAsyncThunk('orders/createOrder', async (payload, thunkAPI) => {
   try {
-    const { data } = await api.post('/orders', payload);
+    const { data } = await api.post('/api/orders', payload);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Unable to create order');
@@ -34,7 +34,7 @@ export const createOrder = createAsyncThunk('orders/createOrder', async (payload
 
 export const fetchMyOrders = createAsyncThunk('orders/fetchMyOrders', async (_, thunkAPI) => {
   try {
-    const { data } = await api.get('/orders/my-orders');
+    const { data } = await api.get('/api/orders/my-orders');
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Unable to load orders');
@@ -43,7 +43,7 @@ export const fetchMyOrders = createAsyncThunk('orders/fetchMyOrders', async (_, 
 
 export const fetchOrderDetails = createAsyncThunk('orders/fetchOrderDetails', async (id, thunkAPI) => {
   try {
-    const { data } = await api.get(`/orders/${id}`);
+    const { data } = await api.get(`/api/orders/${id}`);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Unable to load order');
@@ -52,7 +52,7 @@ export const fetchOrderDetails = createAsyncThunk('orders/fetchOrderDetails', as
 
 export const fetchAllOrders = createAsyncThunk('orders/fetchAllOrders', async (_, thunkAPI) => {
   try {
-    const { data } = await api.get('/orders/admin/all');
+    const { data } = await api.get('/api/orders/admin/all');
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.response?.data?.message || 'Unable to load admin orders');
@@ -63,7 +63,7 @@ export const updateOrderStatus = createAsyncThunk(
   'orders/updateOrderStatus',
   async ({ id, payload }, thunkAPI) => {
     try {
-      const { data } = await api.put(`/orders/${id}`, payload);
+      const { data } = await api.put(`/api/orders/${id}`, payload);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response?.data?.message || 'Unable to update order');
